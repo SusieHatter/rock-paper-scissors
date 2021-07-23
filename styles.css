@@ -5,6 +5,7 @@
   --purple: #8338ec;
   --blue: #3a86ff;
   --white: #fff;
+  --black: #000;
 }
 
 @font-face {
@@ -87,7 +88,6 @@ header > h1 {
 }
 
 .choice {
-  border: 4px solid var(--white);
   border-radius: 50%;
   display: inline-block;
   padding: 10px;
@@ -95,7 +95,19 @@ header > h1 {
   transition: all 0.3s ease;
 }
 
-.choice:hover {
+.computer .choice {
+  border: 4px solid var(--black);
+}
+
+.human .choice {
+  border: 4px solid var(--white);
+}
+
+.computer .selected {
+  background-color: var(--pink);
+}
+
+.human .choice:hover {
   cursor: pointer;
   background: var(--yellow);
 }

@@ -7,15 +7,18 @@ const result_p = document.querySelector(".result > p");
 const rock_div = document.getElementById("r");
 const paper_div = document.getElementById("p");
 const scissors_div = document.getElementById("s");
+const computer_rock_div = document.getElementById("R");
+const computer_paper_div = document.getElementById("P");
+const computer_scissors_div = document.getElementById("S");
 
 function getComputerChoice() {
-  const choices = ["r", "p", "s"];
+  const choices = ["R", "P", "S"];
   return choices[Math.floor(Math.random() * 3)];
 }
 
 function convertToWord(letter) {
-  if (letter === "r") return "Rock";
-  if (letter === "p") return "Paper";
+  if (letter === "r" || letter === "R") return "Rock";
+  if (letter === "p" || letter === "P") return "Paper";
   return "Scissors";
 }
 
@@ -46,21 +49,36 @@ function draw(userChoice, computerChoice) {
 }
 
 function game(userChoice) {
+  computer_rock_div.classList.remove("selected");
+  computer_paper_div.classList.remove("selected");
+  computer_scissors_div.classList.remove("selected");
+
   const computerChoice = getComputerChoice();
+  switch (computerChoice) {
+    case "R":
+      computer_rock_div.classList.add("selected");
+      break;
+    case "P":
+      computer_paper_div.classList.add("selected");
+      break;
+    case "S":
+      computer_scissors_div.classList.add("selected");
+      break;
+  }
   switch (userChoice + computerChoice) {
-    case "rs":
-    case "pr":
-    case "sp":
+    case "rS":
+    case "pR":
+    case "sP":
       win(userChoice, computerChoice);
       break;
-    case "rp":
-    case "ps":
-    case "sr":
+    case "rP":
+    case "pS":
+    case "sR":
       lose(userChoice, computerChoice);
       break;
-    case "rr":
-    case "pp":
-    case "ss":
+    case "rR":
+    case "pP":
+    case "sS":
       draw(userChoice, computerChoice);
       break;
   }
